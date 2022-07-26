@@ -1,0 +1,21 @@
+name: Publish
+on:
+  push: {}
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    name: Build and Publish
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.9"
+      - name: Install dependencies
+        run: |
+          python -m pip install -r requirements.txt
+          python -m pip install build
+      - name: Build
+        run: |
+          python -m build --wheel --outdir dist/
