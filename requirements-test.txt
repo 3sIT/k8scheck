@@ -4,5 +4,5 @@
 #
 #    pip-compile --output-file=requirements-test.txt test-requirements.in
 #
-coverage==5.5
+coverage==6.4
     # via -r test-requirements.in
