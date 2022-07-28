@@ -29,9 +29,8 @@ def test_service(kube):
     resp = svc.proxy_http_get("test/get")
     assert len(resp) != 0
 
-    d = ast.literal_eval(resp)
-    assert d.get("path") == "/test/get"
-    assert d.get("method") == "GET"
+    assert resp[0].get("path") == "/test/get"
+    assert resp[0].get("method") == "GET"
 
     kube.delete(svc)
     kube.delete(dep)

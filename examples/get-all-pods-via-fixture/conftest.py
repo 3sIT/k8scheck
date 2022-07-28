@@ -10,8 +10,11 @@ def custom_pods(kube):
     and how they can be loaded from conftest files.
     """
 
-    # Get resources via kubetest
-    pods = kube.get_pods()
+    def _custom_pods():
+        # Get resources via kubetest
+        pods = kube.get_pods()
 
-    # Perform any other processing
-    return pods.keys()
+        # Perform any other processing
+        return pods.keys()
+
+    return _custom_pods

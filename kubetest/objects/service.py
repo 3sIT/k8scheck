@@ -190,6 +190,7 @@ class Service(ApiObject):
             "/api/v1/namespaces/{namespace}/services/{name}/proxy/{path}",
             method,
             path_params=path_params,
+            response_type=object,
             **kwargs,
         )
 

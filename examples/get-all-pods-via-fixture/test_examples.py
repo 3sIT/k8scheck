@@ -129,12 +129,12 @@ def test_all_pods_via_custom_fixture(kube, custom_pods):
     # Get all pods in the test namespace (default behavior). The redis-master
     # deployment is configured with one replica, and the frontend deployment
     # has 3 replicas. We should expect to have a total of 4 pods.
-    assert len(custom_pods) == 4
+    assert len(custom_pods()) == 4
 
     count_frontend = 0
     count_master = 0
 
-    for pod_name in custom_pods:
+    for pod_name in custom_pods():
         if "frontend" in pod_name:
             count_frontend += 1
         if "redis-master" in pod_name:
