@@ -16,18 +16,19 @@ import sys
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-from kubetest import __version__
-
 sys.path.insert(0, os.path.abspath(".."))
 sys.path.insert(0, os.path.abspath("."))
+
+from kubetest import __version__
+
 
 
 # -- Project information -----------------------------------------------------
 
-project = "kubetest"
+project = "k8st3st"
 year = datetime.datetime.now().year
 copyright = "2018, Vapor IO"
-author = "Vapor IO"
+author = "Terry Drisi (originally Vapor IO)"
 
 # The short X.Y version
 version = __version__
