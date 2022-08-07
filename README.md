@@ -1,9 +1,12 @@
+# k8st3st
+
+[![Build Status](https://github.com/3sIT/k8st3sT/actions/workflows/test.yaml/badge.svg)](https://github.com/3sIT/k8st3sT/actions/workflows/test.yaml)
+[![PyPI](https://img.shields.io/pypi/v/k8st3st.svg)](https://pypi.org/project/k8st3st/)
+[![Documentation Status](https://readthedocs.org/projects/k8st3st/badge/?version=latest)](https://k8st3st.readthedocs.io/en/latest/?badge=latest)
+
+This is a (for the time being) compatible fork of [kubetest](https://github.com/vapor-ware/kubetest) as it now seems to be abandoned, installable using the package name k8st3st
+
 # kubetest
-
-[![Build Status](https://build.vio.sh/buildStatus/icon?job=vapor-ware/kubetest/master)](https://build.vio.sh/blue/organizations/jenkins/vapor-ware%2Fkubetest/activity)
-[![PyPI](https://img.shields.io/pypi/v/kubetest.svg)](https://pypi.org/project/kubetest/)
-[![Documentation Status](https://readthedocs.org/projects/kubetest/badge/?version=latest)](https://kubetest.readthedocs.io/en/latest/?badge=latest)
-
 Kubetest is a [pytest][pytest] plugin that makes it easier to manage a Kubernetes
 cluster within your integration tests. While you can use the [Kubernetes Python client][k8s-py]
 directly, this plugin provides some cluster and object management on top of that so you can
@@ -61,4 +64,4 @@ kubetest is released under the [GPL-3.0](LICENSE) license.
 
 [pytest]: https://docs.pytest.org/en/latest/
 [k8s-py]: https://github.com/kubernetes-client/python
-[kubetest-docs]: https://kubetest.readthedocs.io/en/latest/
+[kubetest-docs]: https://k8st3st.readthedocs.io/en/latest/
