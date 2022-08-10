@@ -27,7 +27,7 @@ from kubetest import __version__
 
 project = "k8st3st"
 year = datetime.datetime.now().year
-copyright = "2018, Vapor IO"
+copyright = "2022, Terry Drisi"
 author = "Terry Drisi (originally Vapor IO)"
 
 # The short X.Y version
