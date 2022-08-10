@@ -1,10 +1,10 @@
 
-https://github.com/vapor-ware/kubetest/issues/154
+https://github.com/vapor-ware/k8scheck/issues/154
 
 ### Summary
 
 When the kubeconfig is provided by a pytest fixture and not via the `--kube-config` command line
-flag, the kubetest test manager does not run its teardown functionality due to an explicit
+flag, the k8scheck test manager does not run its teardown functionality due to an explicit
 check for the `--kube-config` flag, which is a remnant from before the introduction of the
 `kubeconfig` fixture.
 
@@ -22,10 +22,10 @@ test namespace should be cleaned up afterwards.
 $ pytest -s .
 ============================= test session starts =============================
 platform darwin -- Python 3.6.7, pytest-4.4.0, py-1.8.0, pluggy-0.9.0
-kubetest config file: default
-kubetest context: current context
-rootdir: /Users/edaniszewski/dev/vaporio/kubetest
-plugins: requests-mock-1.6.0, grpc-0.7.0, asyncio-0.10.0, kubetest-0.5.0
+k8scheck config file: default
+k8scheck context: current context
+rootdir: /Users/edaniszewski/dev/vaporio/k8scheck
+plugins: requests-mock-1.6.0, grpc-0.7.0, asyncio-0.10.0, k8scheck-0.5.0
 collected 1 item
 
 test_154.py .

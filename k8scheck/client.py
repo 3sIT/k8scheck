@@ -10,10 +10,10 @@ from typing import Dict, Optional, Union
 
 from kubernetes import client
 
-from kubetest import objects, utils
-from kubetest.condition import Condition, Policy, check_and_sort
+from k8scheck import objects, utils
+from k8scheck.condition import Condition, Policy, check_and_sort
 
-log = logging.getLogger("kubetest")
+log = logging.getLogger("k8scheck")
 
 
 class TestClient:
@@ -40,7 +40,7 @@ class TestClient:
         generated test case namespace will be used.
 
         Args:
-            obj: A kubetest API Object wrapper.
+            obj: A k8scheck API Object wrapper.
         """
         if obj.namespace is None:
             obj.namespace = self.namespace
@@ -56,7 +56,7 @@ class TestClient:
         generated test case namespace will be used.
 
         Args:
-            obj: A kubetest API Object wrapper.
+            obj: A k8scheck API Object wrapper.
             options: Additional options for deleting the resource from the cluster.
         """
         if obj.namespace is None:
@@ -69,7 +69,7 @@ class TestClient:
         """Refresh the underlying Kubernetes resource status and state.
 
         Args:
-            obj: A kubetest API Object wrapper.
+            obj: A k8scheck API Object wrapper.
         """
         obj.refresh()
 

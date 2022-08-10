@@ -19,13 +19,13 @@ import sys
 sys.path.insert(0, os.path.abspath(".."))
 sys.path.insert(0, os.path.abspath("."))
 
-from kubetest import __version__
+from k8scheck import __version__
 
 
 
 # -- Project information -----------------------------------------------------
 
-project = "k8st3st"
+project = "k8scheck"
 year = datetime.datetime.now().year
 copyright = "2022, Terry Drisi"
 author = "Terry Drisi (originally Vapor IO)"
@@ -111,7 +111,7 @@ html_static_path = ["_static"]
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = "kubetestdoc"
+htmlhelp_basename = "k8scheckdoc"
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -135,7 +135,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, "kubetest.tex", "kubetest Documentation", "Vapor IO", "manual"),
+    (master_doc, "k8scheck.tex", "k8scheck Documentation", "Vapor IO", "manual"),
 ]
 
 
@@ -143,7 +143,7 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [(master_doc, "kubetest", "kubetest Documentation", [author], 1)]
+man_pages = [(master_doc, "k8scheck", "k8scheck Documentation", [author], 1)]
 
 
 # -- Options for Texinfo output ----------------------------------------------
@@ -154,10 +154,10 @@ man_pages = [(master_doc, "kubetest", "kubetest Documentation", [author], 1)]
 texinfo_documents = [
     (
         master_doc,
-        "kubetest",
-        "kubetest Documentation",
+        "k8scheck",
+        "k8scheck Documentation",
         author,
-        "kubetest",
+        "k8scheck",
         "One line description of project.",
         "Miscellaneous",
     ),

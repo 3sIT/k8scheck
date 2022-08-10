@@ -4,9 +4,9 @@ import logging
 
 from kubernetes import client
 
-from kubetest.objects import ApiObject
+from k8scheck.objects import ApiObject
 
-log = logging.getLogger("kubetest")
+log = logging.getLogger("k8scheck")
 
 
 class Namespace(ApiObject):

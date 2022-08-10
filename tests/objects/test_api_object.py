@@ -1,10 +1,10 @@
-"""Unit tests for the kubetest.objects.api_object module."""
+"""Unit tests for the k8scheck.objects.api_object module."""
 
 import os
 
 import pytest
 
-from kubetest.objects import ConfigMap, Deployment, Service
+from k8scheck.objects import ConfigMap, Deployment, Service
 
 
 class TestApiObject:
@@ -32,7 +32,7 @@ class TestApiObject:
         )
 
         assert isinstance(obj, Deployment)
-        assert obj.name == "kubetest-test-app"
+        assert obj.name == "k8scheck-test-app"
 
     def test_load_obj_from_manifest_many_definitions_no_identifier(self, manifest_dir):
         """Load an object from a manifest file which defines multiple objects.

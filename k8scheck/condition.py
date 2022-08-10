@@ -1,4 +1,4 @@
-"""Define test conditions for kubetest."""
+"""Define test conditions for k8scheck."""
 
 import enum
 from typing import Callable, List, Tuple

@@ -2,8 +2,8 @@
 Writing Tests
 =============
 
-kubetest is designed to interface with a Kubernetes cluster, so before you
-begin writing tests with kubetest, be sure that you have access to a cluster,
+k8scheck is designed to interface with a Kubernetes cluster, so before you
+begin writing tests with k8scheck, be sure that you have access to a cluster,
 whether on Google Container Engine, via minikube, or through your own custom
 cluster. Generally, where the cluster runs shouldn't be an issue, as long as
 you can access it from wherever the tests are being run.
@@ -11,10 +11,10 @@ you can access it from wherever the tests are being run.
 Cluster Configuration
 ---------------------
 
-By default, kubetest will look for a config file at ``~/.kube/config`` and the
+By default, k8scheck will look for a config file at ``~/.kube/config`` and the
 current context -- this is the same behavior that ``kubectl`` utilizes for the
 resolving cluster config. Generally, if you can reach your cluster via.
-``kubectl``, you should be able to use it with kubetest.
+``kubectl``, you should be able to use it with k8scheck.
 
 If you wish to specify a different config file and/or context, you can pass it
 in via the ``--kube-config`` and ``--kube-context`` flags.
@@ -45,7 +45,7 @@ the suite.
     def kubecontext() -> Optional[str]:
         # Return None to use the current context as set in the kubeconfig
         # Or return the name of a specific context in the kubeconfig
-        return 'kubetest-cluster'
+        return 'k8scheck-cluster'
 
 
      def test_my_terraformed_cluster(kube):
@@ -65,13 +65,13 @@ or you can pick and choose individual manifest files for the test case.
 While you can generate your own manifests within the tests themselves (e.g.
 by initializing a Kubernetes API object), this can become tedious and clutter
 up the tests. If you do choose to go this route, you can still use all of the
-kubetest functionality by wrapping supported objects with their equivalent
-kubetest wrapper. For example,
+k8scheck functionality by wrapping supported objects with their equivalent
+k8scheck wrapper. For example,
 
 .. code-block:: python
 
     from kubernetes import client
-    from kubetest.objects import Deployment
+    from k8scheck.objects import Deployment
 
 
     # Create a Kubernetes API Object
@@ -87,11 +87,11 @@ kubetest wrapper. For example,
         )
     )
 
-    # Wrap it in the kubetest wrapper
+    # Wrap it in the k8scheck wrapper
     wrapped_deployment = Deployment(raw_deployment)
 
 If you use manifest files, you can load them directly into wrapped API objects
-easily via the kubetest :ref:`kubetest_client`, which is provided to a test
+easily via the k8scheck :ref:`k8scheck_client`, which is provided to a test
 case via the :ref:`kube_fixture` fixture.
 
 .. code-block:: python
@@ -109,7 +109,7 @@ case via the :ref:`kube_fixture` fixture.
 
 Often, tests will multiple resources that need to be loaded from manifest YAMLs.
 It can be tedious to construct all of the paths, load them, and create them at
-the start of a test. kubetest provides the :ref:`applymanifests_marker` marker
+the start of a test. k8scheck provides the :ref:`applymanifests_marker` marker
 that allows you to specify an entire directory to load, or specific files from
 a directory. The example below loads the same file as the previous example using
 the ``applymanifests`` marker.
@@ -163,7 +163,7 @@ It can also be done through the resource reference itself
 Deleting Resources
 ------------------
 
-It is not necessary to delete resources at the end of a test case. kubetest
+It is not necessary to delete resources at the end of a test case. k8scheck
 automatically manages the namespace for the test case. When the test completes,
 it will delete the namespace from the cluster which will also delete any remaining
 resources in that namespace.
@@ -191,7 +191,7 @@ through the ``kube`` client
 Test Namespaces
 ---------------
 
-By default, ``kubetest`` will automatically generate a new Namespace for each test case,
+By default, ``k8scheck`` will automatically generate a new Namespace for each test case,
 using the test name and a timestamp for the namespace name to ensure uniqueness. This behavior
 may not be desired in all cases, such as when users may not have permissions to create a new
 namespace on the cluster, or the tests are written against an already-running deployment in
@@ -203,7 +203,7 @@ Waiting
 The time it takes for a resource to start, stop, or become ready can vary across
 numerous factors. It is not always reliable to just ``time.sleep(10)`` and hope that
 the desired state is met (nor is it efficient). To help with this, there are a number
-of *wait* functions provided by kubetest. For a full accounting of all wait functions,
+of *wait* functions provided by k8scheck. For a full accounting of all wait functions,
 see the :ref:`reference`.
 
 Below are some simple examples of select wait function usage.

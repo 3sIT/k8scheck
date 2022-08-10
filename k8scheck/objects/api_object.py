@@ -7,14 +7,14 @@ from typing import Optional, Union
 from kubernetes import client
 from kubernetes.client.rest import ApiException
 
-from kubetest import condition, utils
-from kubetest.manifest import load_file
+from k8scheck import condition, utils
+from k8scheck.manifest import load_file
 
-log = logging.getLogger("kubetest")
+log = logging.getLogger("k8scheck")
 
 
 class ApiObject(abc.ABC):
-    """ApiObject is the base class for many of the kubetest objects
+    """ApiObject is the base class for many of the k8scheck objects
     which wrap Kubernetes API objects.
 
     This base class provides common functionality and common object
@@ -293,7 +293,7 @@ class ApiObject(abc.ABC):
             namespace: The namespace to create the resource under.
                 If no namespace is provided, it will use the instance's
                 namespace member, which is set when the object is created
-                via the kubetest client.
+                via the k8scheck client.
         """
 
     @abc.abstractmethod

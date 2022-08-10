@@ -1,4 +1,4 @@
-"""Setup and packaging for kubetest."""
+"""Setup and packaging for k8scheck."""
 
 import os
 from codecs import open  # for consistent encoding
@@ -9,7 +9,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 
 # Load the package's __init__.py file as a dictionary.
 pkg = {}
-with open(os.path.join(here, "kubetest", "__init__.py"), "r", "utf-8") as f:
+with open(os.path.join(here, "k8scheck", "__init__.py"), "r", "utf-8") as f:
     exec(f.read(), pkg)
 
 # Load the README
@@ -34,7 +34,7 @@ setup(
         "": ["LICENSE"],
     },
     install_requires=[
-        "kubernetes>=12.0.0",
+        "kubernetes>=22.0.0, < 23.0.0",
         "pyyaml>=4.2b1",
         "pytest",
     ],
@@ -50,5 +50,5 @@ setup(
     ],
     # this make a plugin available to pytest
     # https://docs.pytest.org/en/latest/writing_plugins.html#making-your-plugin-installable-by-others
-    entry_points={"pytest11": ["kubetest = kubetest.plugin"]},
+    entry_points={"pytest11": ["k8scheck = k8scheck.plugin"]},
 )

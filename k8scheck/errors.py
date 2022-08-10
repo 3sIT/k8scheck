@@ -1,5 +1,5 @@
 class KubetestError(Exception):
-    """Base class for all kubetest exceptions."""
+    """Base class for all k8scheck exceptions."""
 
 
 class SetupError(KubetestError):

@@ -1,4 +1,4 @@
-"""Unit tests for the kubetest.manifest package."""
+"""Unit tests for the k8scheck.manifest package."""
 
 import os
 
@@ -6,11 +6,11 @@ import pytest
 import yaml
 from kubernetes import client
 
-from kubetest import manifest
+from k8scheck import manifest
 
 
 class TestCastValue:
-    """Tests for kubetest.manifest.cast_value"""
+    """Tests for k8scheck.manifest.cast_value"""
 
     @pytest.mark.parametrize(
         "value,t,expected",
@@ -77,14 +77,14 @@ class TestCastValue:
 
 
 class TestNewObject:
-    """Tests for kubetest.manifest.new_object"""
+    """Tests for k8scheck.manifest.new_object"""
 
     # TODO - a lot of this is tested implicitly in TestLoadType. Once we have
     # test coverage set up, can add tests based on whats missing.
 
 
 class TestLoadType:
-    """Tests for kubetest.manifest.load_type"""
+    """Tests for k8scheck.manifest.load_type"""
 
     def test_simple_deployment_ok(self, manifest_dir, simple_deployment):
         """Test loading the simple deployment successfully."""
@@ -246,7 +246,7 @@ class TestLoadType:
 
 
 class TestGetType:
-    """Tests for kubetest.manifest.get_type"""
+    """Tests for k8scheck.manifest.get_type"""
 
     @pytest.mark.parametrize(
         "data,expected",
@@ -296,7 +296,7 @@ class TestGetType:
 
 
 class TestLoadPath:
-    """Tests for kubetest.manifest.load_path"""
+    """Tests for k8scheck.manifest.load_path"""
 
     def test_ok(self, manifest_dir):
         """Test loading the manifests into API objects successfully."""
@@ -328,7 +328,7 @@ class TestLoadPath:
 
 
 class TestLoadFile:
-    """Tests for kubetest.manifest.load_file."""
+    """Tests for k8scheck.manifest.load_file."""
 
     def test_ok_single(self, manifest_dir):
         """Load manifest file with single object definition."""

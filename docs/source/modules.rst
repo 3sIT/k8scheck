@@ -1,7 +1,7 @@
-kubetest
+k8scheck
 ========
 
 .. toctree::
    :maxdepth: 4
 
-   kubetest
+   k8scheck

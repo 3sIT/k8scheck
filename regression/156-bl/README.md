@@ -1,5 +1,5 @@
 
-https://github.com/vapor-ware/kubetest/issues/156
+https://github.com/vapor-ware/k8scheck/issues/156
 
 ### Summary
 

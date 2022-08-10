@@ -79,7 +79,7 @@ Where the files listed above have the following contents:
             assert '<h1>Welcome to nginx!</h1>' in resp.data
 
 
-With ``kubetest`` installed and a cluster available and configurations at ``~/.kube/config``,
+With ``k8scheck`` installed and a cluster available and configurations at ``~/.kube/config``,
 we can run the test
 
 .. code-block:: console
@@ -87,9 +87,9 @@ we can run the test
     $ pytest -s .
     =================================== test session starts ===================================
     platform darwin -- Python 3.6.5, pytest-3.8.0, py-1.6.0, pluggy-0.7.1
-    kubetest config file: default
+    k8scheck config file: default
     rootdir: /Users/edaniszewski/dev/examples, inifile:
-    plugins: kubetest-0.0.1
+    plugins: k8scheck-0.0.1
     collected 1 item
 
     test_nginx.py .
@@ -146,9 +146,9 @@ Now, when we run the tests, we should expect to see an error.
     $ pytest -s .
     =================================== test session starts ===================================
     platform darwin -- Python 3.6.5, pytest-3.8.0, py-1.6.0, pluggy-0.7.1
-    kubetest config file: default
+    k8scheck config file: default
     rootdir: /Users/edaniszewski/dev/examples, inifile:
-    plugins: kubetest-0.0.1
+    plugins: k8scheck-0.0.1
     collected 1 item
 
     test_nginx.py F
@@ -156,7 +156,7 @@ Now, when we run the tests, we should expect to see an error.
     ======================================== FAILURES =========================================
     _______________________________________ test_nginx ________________________________________
 
-    kube = <kubetest.client.TestClient object at 0x105d7cdd8>
+    kube = <k8scheck.client.TestClient object at 0x105d7cdd8>
 
         @pytest.mark.applymanifests('configs', files=[
             'nginx.yaml'
@@ -188,7 +188,7 @@ Now, when we run the tests, we should expect to see an error.
 
 
 In this case, the error message isn't too bad, but if we wanted more context, we could
-run tests with kubetest at log level "info" (or, for lots of context at log level "debug".
+run tests with k8scheck at log level "info" (or, for lots of context at log level "debug".
 Debug output is omitted here for brevity).
 
 .. code-block:: console
@@ -196,9 +196,9 @@ Debug output is omitted here for brevity).
     $ pytest -s . --kube-log-level=info
     ================================================================= test session starts =================================================================
     platform darwin -- Python 3.6.5, pytest-3.8.0, py-1.6.0, pluggy-0.7.1
-    kubetest config file: default
+    k8scheck config file: default
     rootdir: /Users/edaniszewski/dev/examples, inifile:
-    plugins: kubetest-0.0.1
+    plugins: k8scheck-0.0.1
     collected 1 item
 
     test_nginx.py F
@@ -206,7 +206,7 @@ Debug output is omitted here for brevity).
     ====================================================================== FAILURES =======================================================================
     _____________________________________________________________________ test_nginx ______________________________________________________________________
 
-    kube = <kubetest.client.TestClient object at 0x103e012e8>
+    kube = <k8scheck.client.TestClient object at 0x103e012e8>
 
         @pytest.mark.applymanifests('configs', files=[
             'nginx.yaml'
@@ -232,16 +232,16 @@ Debug output is omitted here for brevity).
     examples/test_nginx.py:20: AssertionError
     ----------------------------------------------------------------- Captured log setup ------------------------------------------------------------------
     manager.py                 308 INFO     creating test meta for examples/test_nginx.py::test_nginx
-    namespace.py                61 INFO     creating namespace "kubetest-test-nginx-1538172620"
-    deployment.py               48 INFO     creating deployment "nginx-deployment" in namespace "kubetest-test-nginx-1538172620"
-    utils.py                    90 INFO     waiting for condition: <Condition (name: wait for <class 'kubetest.objects.deployment.Deployment'>:nginx-deployment to be created, met: False)>
-    utils.py                   121 INFO     wait completed (total=0.063870) <Condition (name: wait for <class 'kubetest.objects.deployment.Deployment'>:nginx-deployment to be created, met: True)>
+    namespace.py                61 INFO     creating namespace "k8scheck-test-nginx-1538172620"
+    deployment.py               48 INFO     creating deployment "nginx-deployment" in namespace "k8scheck-test-nginx-1538172620"
+    utils.py                    90 INFO     waiting for condition: <Condition (name: wait for <class 'k8scheck.objects.deployment.Deployment'>:nginx-deployment to be created, met: False)>
+    utils.py                   121 INFO     wait completed (total=0.063870) <Condition (name: wait for <class 'k8scheck.objects.deployment.Deployment'>:nginx-deployment to be created, met: True)>
     ------------------------------------------------------------------ Captured log call ------------------------------------------------------------------
     utils.py                    90 INFO     waiting for condition: <Condition (name: wait for pre-registered objects to be ready, met: False)>
     utils.py                   121 INFO     wait completed (total=2.169333) <Condition (name: wait for pre-registered objects to be ready, met: True)>
     deployment.py              131 INFO     getting pods for deployment "nginx-deployment"
     ---------------------------------------------------------------- Captured log teardown ----------------------------------------------------------------
-    namespace.py                79 INFO     deleting namespace "kubetest-test-nginx-1538172620"
+    namespace.py                79 INFO     deleting namespace "k8scheck-test-nginx-1538172620"
     ============================================================== 1 failed in 5.07 seconds ===============================================================
     ERROR: InvocationError: 'pytest -s . --kube-log-level=info'
     _______________________________________________________________________ summary _______________________________________________________________________
@@ -251,9 +251,9 @@ Debug output is omitted here for brevity).
 Container logs on test error
 ----------------------------
 
-In the above example, you got to see different log output that kubetest could provide. In
-addition to logging out the actions that kubetest performs (and at the "debug" level, the
-Kubernetes objects themselves), kubetest can also get logs out of the running contianers
+In the above example, you got to see different log output that k8scheck could provide. In
+addition to logging out the actions that k8scheck performs (and at the "debug" level, the
+Kubernetes objects themselves), k8scheck can also get logs out of the running contianers
 for the test.
 
 The caveat here is that it will only get logs for containers that are running. In the example
@@ -311,10 +311,10 @@ Finally, a Job manifest can be created for the test:
    apiVersion: batch/v1
    kind: Job
    metadata:
-     name: kubetest-example
+     name: k8scheck-example
      namespace: default
      labels:
-       app: kubetest-example
+       app: k8scheck-example
    spec:
      backoffLimit: 0
      template:
@@ -322,11 +322,11 @@ Finally, a Job manifest can be created for the test:
          restartPolicy: Never
          containers:
          - name: tests
-           image: kubetest/example-test-image
+           image: k8scheck/example-test-image
            imagePullPolicy: Always
 
 You can then apply the manifest and have it run on cluster
 
 .. code-block:: bash
 
-   kubectl apply -f kubetest-job.yaml
+   kubectl apply -f k8scheck-job.yaml

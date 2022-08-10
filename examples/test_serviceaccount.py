@@ -1,4 +1,4 @@
-"""An example of using kubetest to manage a serviceaccount."""
+"""An example of using k8scheck to manage a serviceaccount."""
 
 import os
 from time import sleep

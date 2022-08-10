@@ -1,25 +1,25 @@
-"""Unit tests for the kubetest.utils package."""
+"""Unit tests for the k8scheck.utils package."""
 
 import pytest
 
-from kubetest import utils
+from k8scheck import utils
 
 
 @pytest.mark.parametrize(
     "name,expected",
     [
-        ("", "kubetest--1536849367"),
-        ("TestName", "kubetest-testname-1536849367"),
-        ("TESTNAME", "kubetest-testname-1536849367"),
-        ("Test-Name", "kubetest-test-name-1536849367"),
-        ("Test1_FOO-BAR_2", "kubetest-test1-foo-bar-2-1536849367"),
-        ("123456", "kubetest-123456-1536849367"),
-        ("___", "kubetest-----1536849367"),
+        ("", "k8scheck--1536849367"),
+        ("TestName", "k8scheck-testname-1536849367"),
+        ("TESTNAME", "k8scheck-testname-1536849367"),
+        ("Test-Name", "k8scheck-test-name-1536849367"),
+        ("Test1_FOO-BAR_2", "k8scheck-test1-foo-bar-2-1536849367"),
+        ("123456", "k8scheck-123456-1536849367"),
+        ("___", "k8scheck-----1536849367"),
         (
             "test-" * 14,
-            "kubetest-test-test-test-test-test-test-test-test-tes-1536849367",
+            "k8scheck-test-test-test-test-test-test-test-test-tes-1536849367",
         ),
-        ("test[a]-foo", "kubetest-test-a--foo-1536849367"),
+        ("test[a]-foo", "k8scheck-test-a--foo-1536849367"),
     ],
 )
 def test_new_namespace(name, expected):

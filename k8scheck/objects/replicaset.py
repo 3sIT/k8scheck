@@ -6,12 +6,12 @@ from typing import List
 
 from kubernetes import client
 
-from kubetest.utils import selector_string
+from k8scheck.utils import selector_string
 
 from .api_object import ApiObject
 from .pod import Pod
 
-log = logging.getLogger("kubetest")
+log = logging.getLogger("k8scheck")
 
 
 class ReplicaSet(ApiObject):
@@ -36,20 +36,20 @@ class ReplicaSet(ApiObject):
 
     def __init__(self, *args, **kwargs) -> None:
         super(ReplicaSet, self).__init__(*args, **kwargs)
-        self._add_kubetest_labels()
+        self._add_k8scheck_labels()
 
         client.AppsV1Api.read_namespaced_replica_set()
 
-    def _add_kubetest_labels(self) -> None:
-        """Add a kubetest label to the ReplicaSet object.
+    def _add_k8scheck_labels(self) -> None:
+        """Add a k8scheck label to the ReplicaSet object.
 
-        This allows kubetest to more easily and reliably search for and aggregate
+        This allows k8scheck to more easily and reliably search for and aggregate
         API objects, such as getting the Pods for a ReplicaSet.
 
-        The kubetest label key is "kubetest/<obj kind>" where the obj kind is
+        The k8scheck label key is "k8scheck/<obj kind>" where the obj kind is
         the lower-cased kind of the obj.
         """
-        self.klabel_key = "kubetest/replicaset"
+        self.klabel_key = "k8scheck/replicaset"
         if self.obj.metadata.labels:
             self.klabel_uid = self.obj.metadata.labels.get(self.klabel_key, None)
         else:
@@ -73,7 +73,7 @@ class ReplicaSet(ApiObject):
 
         # If no spec is set, there is nothing to set additional labels on
         if self.obj.spec is None:
-            log.warning("replicaset spec not set - cannot set kubetest label")
+            log.warning("replicaset spec not set - cannot set k8scheck label")
             return
 
         # Set the selector label
@@ -101,7 +101,7 @@ class ReplicaSet(ApiObject):
 
         Args:
             namespace: The namespace to create the ReplicaSet under.
-                If the ReplicaSet was loaded via the kubetest client, the
+                If the ReplicaSet was loaded via the k8scheck client, the
                 namespace will already be set, so it is not needed here.
                 Otherwise, the namespace will need to be provided.
         """

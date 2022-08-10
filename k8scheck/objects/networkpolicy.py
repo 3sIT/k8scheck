@@ -6,7 +6,7 @@ from kubernetes import client
 
 from .api_object import ApiObject
 
-log = logging.getLogger("kubetest")
+log = logging.getLogger("k8scheck")
 
 
 class NetworkPolicy(ApiObject):
@@ -40,7 +40,7 @@ class NetworkPolicy(ApiObject):
 
         Args:
             namespace: The namespace to create the NetworkPolicy under.
-                If the NetworkPolicy was loaded via the kubetest client, the
+                If the NetworkPolicy was loaded via the k8scheck client, the
                 namespace will already be set, so it is not needed here.
                 Otherwise, the namespace will need to be provided.
         """

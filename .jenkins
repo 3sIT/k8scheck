@@ -9,7 +9,7 @@ library identifier: 'vapor@1.0.3', retriever: modernSCM([
 
 pythonPipeline([
   'pythonVersion': '3.8',
-  'twineCredential': 'pypi-token-kubetest-upload',
+  'twineCredential': 'pypi-token-k8st3st-upload',
   'skipIntegrationTest': true,
   'skipDocker': true,
   'publishToPypi': true,

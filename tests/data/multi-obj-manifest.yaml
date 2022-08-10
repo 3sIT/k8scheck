@@ -10,7 +10,7 @@ spec:
   - name: http
     port: 80
   selector:
-    deployment: kubetest-test-app
+    deployment: k8scheck-test-app
   type: ClusterIP
 ---
 apiVersion: v1
@@ -22,24 +22,24 @@ spec:
   - name: http
     port: 8080
   selector:
-    deployment: kubetest-test-app
+    deployment: k8scheck-test-app
   type: ClusterIP
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kubetest-test-app
+  name: k8scheck-test-app
   labels:
-    deployment: kubetest-test-app
+    deployment: k8scheck-test-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      deployment: kubetest-test-app
+      deployment: k8scheck-test-app
   template:
     metadata:
       labels:
-        deployment: kubetest-test-app
+        deployment: k8scheck-test-app
     spec:
       containers:
         - name: busybox

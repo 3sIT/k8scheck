@@ -6,7 +6,7 @@ from kubernetes import client
 
 from .api_object import ApiObject
 
-log = logging.getLogger("kubetest")
+log = logging.getLogger("k8scheck")
 
 
 class Endpoints(ApiObject):

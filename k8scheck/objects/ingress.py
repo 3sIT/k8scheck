@@ -4,11 +4,11 @@ import logging
 
 from kubernetes import client
 
-from kubetest import condition, utils
+from k8scheck import condition, utils
 
 from .api_object import ApiObject
 
-log = logging.getLogger("kubetest")
+log = logging.getLogger("k8scheck")
 
 
 class Ingress(ApiObject):
@@ -42,7 +42,7 @@ class Ingress(ApiObject):
 
         Args:
             namespace: The namespace to create the Ingress under.
-                If the Ingress was loaded via the kubetest client, the
+                If the Ingress was loaded via the k8scheck client, the
                 namespace will already be set, so it is not needed here.
                 Otherwise, the namespace will need to be provided.
         """

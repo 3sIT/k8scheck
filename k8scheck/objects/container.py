@@ -4,7 +4,7 @@ import logging
 
 from kubernetes import client
 
-log = logging.getLogger("kubetest")
+log = logging.getLogger("k8scheck")
 
 
 class Container:

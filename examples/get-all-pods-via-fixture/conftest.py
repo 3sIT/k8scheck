@@ -11,7 +11,7 @@ def custom_pods(kube):
     """
 
     def _custom_pods():
-        # Get resources via kubetest
+        # Get resources via k8scheck
         pods = kube.get_pods()
 
         # Perform any other processing

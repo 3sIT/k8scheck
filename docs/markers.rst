@@ -5,7 +5,7 @@ Markers
 =======
 
 This section defines the `markers <https://docs.pytest.org/en/latest/mark.html>`_
-that ``kubetest`` makes available when installed.
+that ``k8scheck`` makes available when installed.
 
 .. note::
 
@@ -191,7 +191,7 @@ generated ClusterRoleBinding will default to all users and all service accounts.
 
 The ClusterRoleBinding created via this marker will always use an ``apiGroup`` of
 "rbac.authorization.k8s.io" for both subjects and roleRefs. Generated ClusterRoleBindings
-will be created with the ``kubetest:`` prefix.
+will be created with the ``k8scheck:`` prefix.
 
 For more information, see: https://kubernetes.io/docs/reference/access-authn-authz/rbac/
 
@@ -313,7 +313,7 @@ Description
 ~~~~~~~~~~~
 
 The ``namespace`` marker exposes options to control how namespaces are handled
-by kubetest.
+by k8scheck.
 
 By default, a new namespace is created for each test case where the namespace name is
 generated from the test name and a timestamp to ensure uniqueness. With this marker, this

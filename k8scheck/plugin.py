@@ -14,13 +14,13 @@ import kubernetes
 import pytest
 import urllib3
 
-from kubetest import errors, markers
-from kubetest.client import TestClient
-from kubetest.manager import KubetestManager
+from k8scheck import errors, markers
+from k8scheck.client import TestClient
+from k8scheck.manager import KubetestManager
 
 GOOGLE_APPLICATION_CREDENTIALS = "GOOGLE_APPLICATION_CREDENTIALS"
 
-log = logging.getLogger("kubetest")
+log = logging.getLogger("k8scheck")
 
 # A global instance of the KubetestManager. This will be used by various
 # pytest hooks and fixtures in order to create and manage the TestClient
@@ -34,20 +34,20 @@ manager = KubetestManager()
 
 
 def pytest_addoption(parser):
-    """Add options to pytest to configure kubetest.
+    """Add options to pytest to configure k8scheck.
 
     See Also:
         https://docs.pytest.org/en/latest/reference.html#_pytest.hookspec.pytest_addoption
     """
 
-    group = parser.getgroup("kubetest", "kubernetes integration test support")
+    group = parser.getgroup("k8scheck", "kubernetes integration test support")
     group.addoption(
         "--kube-config",
         action="store",
         metavar="path",
         default=os.getenv("KUBECONFIG"),
         help=(
-            "the kubernetes config for kubetest; this is required for "
+            "the kubernetes config for k8scheck; this is required for "
             "resources to be installed on the cluster"
         ),
     )
@@ -73,7 +73,7 @@ def pytest_addoption(parser):
     )
 
     # FIXME (etd) - this was an attempt to fix occasional permissions errors
-    # (https://github.com/vapor-ware/kubetest/issues/11) but in doing so, it looks
+    # (https://github.com/vapor-ware/k8scheck/issues/11) but in doing so, it looks
     # like I hosed my permissions, so I'm just commenting all of this out for now...
     # group.addoption(
     #     '--google-application-credentials',
@@ -87,7 +87,7 @@ def pytest_addoption(parser):
         "--kube-log-level",
         action="store",
         default="warning",
-        help="log level for the kubetest logger",
+        help="log level for the k8scheck logger",
     )
 
     group.addoption(
@@ -109,7 +109,7 @@ def pytest_addoption(parser):
 
 
 def pytest_report_header(config):
-    """Augment the pytest report header with kubetest info.
+    """Augment the pytest report header with k8scheck info.
 
     See Also:
         https://docs.pytest.org/en/latest/reference.html#_pytest.hookspec.pytest_report_header
@@ -126,20 +126,20 @@ def pytest_report_header(config):
         context = "current context"
 
     return [
-        f"kubetest config file: {config_file}",
-        f"kubetest context: {context}",
+        f"k8scheck config file: {config_file}",
+        f"k8scheck context: {context}",
     ]
 
 
 def pytest_configure(config):
-    """Configure pytest with kubetest additions.
+    """Configure pytest with k8scheck additions.
 
-    This registers the kubetest markers with pytest.
+    This registers the k8scheck markers with pytest.
 
     See Also:
         https://docs.pytest.org/en/latest/reference.html#_pytest.hookspec.pytest_configure
     """
-    # Register kubetest markers
+    # Register k8scheck markers
     markers.register(config)
 
     # Disable warnings, if configured to do so.
@@ -148,7 +148,7 @@ def pytest_configure(config):
 
 
 def pytest_sessionstart(session):
-    """Configure kubetest for the test session.
+    """Configure k8scheck for the test session.
 
     Kubetest setup happens at session start (pytest_sessionstart) rather
     than on configuration (pytest_configure) so that we only have the
@@ -159,16 +159,16 @@ def pytest_sessionstart(session):
         pytest --markers
         pytest --fixtures
 
-    we do not want to configure kubetest and force the expectation of
+    we do not want to configure k8scheck and force the expectation of
     cluster availability.
 
     See Also:
         https://docs.pytest.org/en/latest/reference.html#_pytest.hookspec.pytest_sessionstart
     """
-    # Setup the kubetest logger
+    # Setup the k8scheck logger
     log_level = session.config.getoption("kube_log_level")
     level = logging._nameToLevel.get(log_level.upper(), logging.WARNING)
-    logger = logging.getLogger("kubetest")
+    logger = logging.getLogger("k8scheck")
     logger.setLevel(level)
 
     # Check for configuration deprecations
@@ -179,7 +179,7 @@ def pytest_sessionstart(session):
             "https://docs.pytest.org/en/latest/plugins.html",
         )
 
-    # # Configure kubetest with the kubernetes config, if not disabled.
+    # # Configure k8scheck with the kubernetes config, if not disabled.
     # disabled = session.config.getoption('kube_disable')
     # if not disabled:
     #     # # Set the GOOGLE_APPLICATION_CREDENTIALS environment variable. For more, see:
@@ -196,7 +196,7 @@ def pytest_sessionstart(session):
 
 
 # def pytest_sessionfinish(session):
-#     """Unconfigure the test session for kubetest.
+#     """Unconfigure the test session for k8scheck.
 #
 #     See Also:
 #         https://docs.pytest.org/en/latest/reference.html#_pytest.hookspec.pytest_sessionfinish
@@ -224,7 +224,7 @@ def pytest_runtest_setup(item):
     # Previously (v0.3.[0-3]), this setup was gated to only run if the
     # --kube-config commandline flag was set. This was primarily done as an
     # optimization as to not create test metadata for tests that will not use
-    # it. https://github.com/vapor-ware/kubetest/issues/130 points out that
+    # it. https://github.com/vapor-ware/k8scheck/issues/130 points out that
     # the kubeconfig may be set without the --kube-config flag by overriding the
     # kubeconfig fixture. In such a case, this would have been skipped -- thus
     # there should NOT be any gating around test case metadata creation since
@@ -278,7 +278,7 @@ def pytest_runtest_teardown(item):
     """
 
     # See #154: Previously, this was only checking if the --kube-config command line
-    # arg was passed to determine whether a test used kubetest for setup, and thus
+    # arg was passed to determine whether a test used k8scheck for setup, and thus
     # whether it needed to be torn down. With the introduction of the kubeconfig
     # fixture, which allows users to override the kubeconfig in the test without having
     # to specify the --kube-config arg, this would prevent cleanup with the config was
@@ -336,7 +336,7 @@ def pytest_runtest_makereport(item, call):
 
 
 def pytest_keyboard_interrupt():
-    """Clean up the cluster from kubetest artifacts if the tests
+    """Clean up the cluster from k8scheck artifacts if the tests
     are manually terminated via keyboard interrupt.
 
     See Also:
@@ -345,11 +345,11 @@ def pytest_keyboard_interrupt():
     try:
         namespaces = kubernetes.client.CoreV1Api().list_namespace()
         for ns in namespaces.items:
-            # if the namespace has a 'kubetest-' prefix, remove it.
+            # if the namespace has a 'k8scheck-' prefix, remove it.
             name = ns.metadata.name
             status = ns.status
             if (
-                name.startswith("kubetest-")
+                name.startswith("k8scheck-")
                 and status is not None
                 and status.phase.lower() == "active"
             ):
@@ -361,9 +361,9 @@ def pytest_keyboard_interrupt():
 
         crbs = kubernetes.client.RbacAuthorizationV1Api().list_cluster_role_binding()
         for crb in crbs.items:
-            # if the cluster role binding has a 'kubetest:' prefix, remove it.
+            # if the cluster role binding has a 'k8scheck:' prefix, remove it.
             name = crb.metadata.name
-            if name.startswith("kubetest:"):
+            if name.startswith("k8scheck:"):
                 print(f'keyboard interrupt: cleaning up clusterrolebinding "{crb}"')
                 kubernetes.client.RbacAuthorizationV1Api().delete_cluster_role_binding(
                     body=kubernetes.client.V1DeleteOptions(),
@@ -371,10 +371,10 @@ def pytest_keyboard_interrupt():
                 )
     except Exception as e:
         log.error(
-            "Failed to clean up kubetest artifacts from cluster on keyboard interrupt. "
+            "Failed to clean up k8scheck artifacts from cluster on keyboard interrupt. "
             "You may need to manually remove items from your cluster. Check for "
-            'namespaces with the "kubetest-" prefix and cluster role bindings with '
-            f'the "kubetest:" prefix. ({e})'
+            'namespaces with the "k8scheck-" prefix and cluster role bindings with '
+            f'the "k8scheck:" prefix. ({e})'
         )
 
 
@@ -382,7 +382,7 @@ def pytest_keyboard_interrupt():
 
 
 class ClusterInfo:
-    """Information about the cluster the kubetest is being run on.
+    """Information about the cluster the k8scheck is being run on.
 
     This info is gathered from the current context and the loaded
     configuration.
@@ -469,7 +469,7 @@ def kube(kubeconfig, kubecontext, request) -> TestClient:
     test_case = manager.get_test(request.node.nodeid)
     if test_case is None:
         log.error(
-            f'No kubetest client found for test using the "kube" fixture. ({request.node.nodeid})',  # noqa
+            f'No k8scheck client found for test using the "kube" fixture. ({request.node.nodeid})',  # noqa
         )
         raise errors.SetupError("error generating test client")
 

@@ -1,4 +1,4 @@
-"""An example of using kubetest to manage a deployment."""
+"""An example of using k8scheck to manage a deployment."""
 
 import os
 

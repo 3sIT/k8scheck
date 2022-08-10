@@ -3,19 +3,19 @@
 API Reference
 =============
 
-This page contains the full API reference for kubetest.
+This page contains the full API reference for k8scheck.
 
 .. contents::
     :depth: 3
     :local:
 
 
-.. _kubetest_client:
+.. _k8scheck_client:
 
 Client
 ------
 
-.. automodule:: kubetest.client
+.. automodule:: k8scheck.client
 
 
 TestClient
@@ -23,17 +23,17 @@ TestClient
 
 .. versionadded:: 0.0.1
 
-.. autoclass:: kubetest.client.TestClient
+.. autoclass:: k8scheck.client.TestClient
    :members:
    :noindex:
 
 
-.. _kubetest_objects:
+.. _k8scheck_objects:
 
 Objects
 -------
 
-.. automodule:: kubetest.objects
+.. automodule:: k8scheck.objects
 
 
 ApiObject
@@ -41,7 +41,7 @@ ApiObject
 
 .. versionadded:: 0.0.1
 
-.. autoclass:: kubetest.objects.ApiObject
+.. autoclass:: k8scheck.objects.ApiObject
    :members:
 
 
@@ -50,7 +50,7 @@ ClusterRoleBinding
 
 .. versionadded:: 0.0.1
 
-.. autoclass:: kubetest.objects.ClusterRoleBinding
+.. autoclass:: k8scheck.objects.ClusterRoleBinding
    :members:
 
 
@@ -59,7 +59,7 @@ ConfigMap
 
 .. versionadded:: 0.0.1
 
-.. autoclass:: kubetest.objects.ConfigMap
+.. autoclass:: k8scheck.objects.ConfigMap
    :members:
 
 
@@ -68,7 +68,7 @@ Container
 
 .. versionadded:: 0.0.1
 
-.. autoclass:: kubetest.objects.Container
+.. autoclass:: k8scheck.objects.Container
    :members:
 
 
@@ -77,7 +77,7 @@ Deployment
 
 .. versionadded:: 0.0.1
 
-.. autoclass:: kubetest.objects.Deployment
+.. autoclass:: k8scheck.objects.Deployment
    :members:
 
 
@@ -86,7 +86,7 @@ Namespace
 
 .. versionadded:: 0.0.1
 
-.. autoclass:: kubetest.objects.Namespace
+.. autoclass:: k8scheck.objects.Namespace
    :members:
 
 
@@ -95,7 +95,7 @@ Node
 
 .. versionadded:: 0.0.1
 
-.. autoclass:: kubetest.objects.Node
+.. autoclass:: k8scheck.objects.Node
    :members:
 
 
@@ -104,7 +104,7 @@ Pod
 
 .. versionadded:: 0.0.1
 
-.. autoclass:: kubetest.objects.Pod
+.. autoclass:: k8scheck.objects.Pod
    :members:
 
 
@@ -113,7 +113,7 @@ RoleBinding
 
 .. versionadded:: 0.0.1
 
-.. autoclass:: kubetest.objects.RoleBinding
+.. autoclass:: k8scheck.objects.RoleBinding
    :members:
 
 
@@ -122,7 +122,7 @@ Secret
 
 .. versionadded:: 0.0.1
 
-.. autoclass:: kubetest.objects.Secret
+.. autoclass:: k8scheck.objects.Secret
    :members:
 
 
@@ -131,16 +131,16 @@ Service
 
 .. versionadded:: 0.0.1
 
-.. autoclass:: kubetest.objects.Service
+.. autoclass:: k8scheck.objects.Service
    :members:
 
 
-.. _kubetest_conditions:
+.. _k8scheck_conditions:
 
 Conditions
 ----------
 
-.. automodule:: kubetest.condition
+.. automodule:: k8scheck.condition
 
 
 Policy
@@ -148,7 +148,7 @@ Policy
 
 .. versionadded:: 0.0.1
 
-.. autoclass:: kubetest.condition.Policy
+.. autoclass:: k8scheck.condition.Policy
    :members:
 
 
@@ -157,13 +157,13 @@ Condition
 
 .. versionadded:: 0.0.1
 
-.. autoclass:: kubetest.condition.Condition
+.. autoclass:: k8scheck.condition.Condition
    :members:
 
 
 Helpers
 ~~~~~~~
 
-.. autofunction:: kubetest.condition.check_all
+.. autofunction:: k8scheck.condition.check_all
 
-.. autofunction:: kubetest.condition.check_and_sort
+.. autofunction:: k8scheck.condition.check_and_sort

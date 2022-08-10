@@ -1,4 +1,4 @@
-"""Utility functions for kubetest."""
+"""Utility functions for k8scheck."""
 
 import logging
 import time
@@ -6,9 +6,9 @@ from typing import Dict, Mapping, Union
 
 from kubernetes.client.rest import ApiException
 
-from kubetest.condition import Condition
+from k8scheck.condition import Condition
 
-log = logging.getLogger("kubetest")
+log = logging.getLogger("k8scheck")
 
 
 def new_namespace(test_name: str) -> str:
@@ -18,7 +18,7 @@ def new_namespace(test_name: str) -> str:
     alphanumeric characters or '-' and must start with an alphanumeric.
 
     The test name and current timestamp are formatted to comply to this spec and
-    appended to the 'kubetest' prefix.
+    appended to the 'k8scheck' prefix.
 
     Args:
         test_name: The name of the test case for the namespace.
@@ -26,7 +26,7 @@ def new_namespace(test_name: str) -> str:
     Returns:
         The namespace name.
     """
-    prefix = "kubetest"
+    prefix = "k8scheck"
     timestamp = str(int(time.time()))
     test_name = test_name.replace("_", "-").lower()
     test_name = test_name.replace("[", "-")

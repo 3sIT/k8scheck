@@ -1,4 +1,4 @@
-"""An example of using kubetest to manage an ingress."""
+"""An example of using k8scheck to manage an ingress."""
 
 import os
 

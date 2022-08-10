@@ -25,7 +25,7 @@ idna==3.3
 iniconfig==1.1.1
     # via pytest
 kubernetes >= 22.0.0, < 23.0.0
-    # via k8st3sT (setup.py)
+    # via k8scheck (setup.py)
 oauthlib==3.2.0
     # via requests-oauthlib
 packaging==21.3
@@ -43,12 +43,12 @@ pyasn1-modules==0.2.8
 pyparsing==3.0.9
     # via packaging
 pytest==7.1.2
-    # via k8st3sT (setup.py)
+    # via k8scheck (setup.py)
 python-dateutil==2.8.2
     # via kubernetes
 pyyaml==6.0
     # via
-    #   k8st3sT (setup.py)
+    #   k8scheck (setup.py)
     #   kubernetes
 requests==2.28.1
     # via

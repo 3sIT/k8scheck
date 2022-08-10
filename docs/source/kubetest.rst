@@ -1,55 +1,55 @@
-kubetest package
+k8scheck package
 ================
 
 Submodules
 ----------
 
-kubetest.client module
+k8scheck.client module
 ----------------------
 
-.. automodule:: kubetest.client
+.. automodule:: k8scheck.client
     :noindex:
     :members:
     :undoc-members:
     :show-inheritance:
 
-kubetest.manager module
+k8scheck.manager module
 -----------------------
 
-.. automodule:: kubetest.manager
+.. automodule:: k8scheck.manager
     :members:
     :undoc-members:
     :show-inheritance:
 
-kubetest.manifest module
+k8scheck.manifest module
 ------------------------
 
-.. automodule:: kubetest.manifest
+.. automodule:: k8scheck.manifest
     :members:
     :undoc-members:
     :show-inheritance:
 
-kubetest.objects module
+k8scheck.objects module
 -----------------------
 
-.. automodule:: kubetest.objects
+.. automodule:: k8scheck.objects
     :noindex:
     :members:
     :undoc-members:
     :show-inheritance:
 
-kubetest.plugin module
+k8scheck.plugin module
 ----------------------
 
-.. automodule:: kubetest.plugin
+.. automodule:: k8scheck.plugin
     :members:
     :undoc-members:
     :show-inheritance:
 
-kubetest.utils module
+k8scheck.utils module
 ---------------------
 
-.. automodule:: kubetest.utils
+.. automodule:: k8scheck.utils
     :members:
     :undoc-members:
     :show-inheritance:
@@ -58,7 +58,7 @@ kubetest.utils module
 Module contents
 ---------------
 
-.. automodule:: kubetest
+.. automodule:: k8scheck
     :members:
     :undoc-members:
     :show-inheritance:

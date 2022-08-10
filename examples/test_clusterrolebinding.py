@@ -1,4 +1,4 @@
-"""An example of using kubetest to manage a cluster role binding."""
+"""An example of using k8scheck to manage a cluster role binding."""
 
 import os
 

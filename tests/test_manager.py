@@ -1,6 +1,6 @@
-"""Unit tests for the kubetest.manager package."""
+"""Unit tests for the k8scheck.manager package."""
 
-from kubetest import manager
+from k8scheck import manager
 
 
 def test_manager_new_test():
@@ -11,7 +11,7 @@ def test_manager_new_test():
 
     c = m.new_test("node-id", "test-name", True, None)
     assert isinstance(c, manager.TestMeta)
-    assert "kubetest-test-name-" in c.ns
+    assert "k8scheck-test-name-" in c.ns
 
     assert len(m.nodes) == 1
     assert "node-id" in m.nodes

@@ -1,5 +1,5 @@
 #
-# kubetest
+# k8scheck
 #
 
 PKG_NAME    := $(shell python setup.py --name)
@@ -9,18 +9,18 @@ PKG_VERSION := $(shell python setup.py --version)
 .PHONY: clean
 clean:  ## Clean up build artifacts
 	rm -rf build/ dist/ *.egg-info htmlcov/ .coverage* .pytest_cache/ \
-		kubetest/__pycache__ tests/__pycache__
+		k8scheck/__pycache__ tests/__pycache__
 
 .PHONY: deps
 deps:  ## Update the frozen pip dependencies (requirements.txt)
 	tox -e deps
 
 .PHONY: docs
-docs:  ## Build the kubetest docs locally
+docs:  ## Build the k8scheck docs locally
 	tox -e docs
 
 .PHONY: example-tests
-example-tests:  ## Run the example tests using kubetest
+example-tests:  ## Run the example tests using k8scheck
 	tox -e examples
 
 .PHONY: fmt

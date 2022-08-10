@@ -1,12 +1,12 @@
-# k8st3st
+# k8scheck
 
-[![Build Status](https://github.com/3sIT/k8st3sT/actions/workflows/test.yaml/badge.svg)](https://github.com/3sIT/k8st3sT/actions/workflows/test.yaml)
-[![PyPI](https://img.shields.io/pypi/v/k8st3st.svg)](https://pypi.org/project/k8st3st/)
-[![Documentation Status](https://readthedocs.org/projects/k8st3st/badge/?version=latest)](https://k8st3st.readthedocs.io/en/latest/?badge=latest)
+[![Build Status](https://github.com/3sIT/k8scheck/actions/workflows/test.yaml/badge.svg)](https://github.com/3sIT/k8scheck/actions/workflows/test.yaml)
+[![PyPI](https://img.shields.io/pypi/v/k8scheck.svg)](https://pypi.org/project/k8scheck/)
+[![Documentation Status](https://readthedocs.org/projects/k8scheck/badge/?version=latest)](https://k8scheck.readthedocs.io/en/latest/?badge=latest)
 
-This is a (for the time being) compatible fork of [kubetest](https://github.com/vapor-ware/kubetest) as it now seems to be abandoned, installable using the package name k8st3st
+This is a (for the time being) compatible fork of [k8scheck](https://github.com/vapor-ware/k8scheck) as it now seems to be abandoned, installable using the package name k8scheck
 
-# kubetest
+# k8scheck
 Kubetest is a [pytest][pytest] plugin that makes it easier to manage a Kubernetes
 cluster within your integration tests. While you can use the [Kubernetes Python client][k8s-py]
 directly, this plugin provides some cluster and object management on top of that so you can
@@ -27,41 +27,41 @@ pod or deployment and inspect the aftermath).
 * Get container logs and search for expected logging output.
 * Plugin-managed RBAC permissions at test-case granularity using pytest markers.
 
-For more information, see the [kubetest documentation][kubetest-docs].
+For more information, see the [k8scheck documentation][k8scheck-docs].
 
 ## Installation
 
 This plugin can be installed with `pip`
 
 ```
-pip install kubetest
+pip install k8scheck
 ```
 
-Note that the `kubetest` package has entrypoint hooks defined in its [`setup.py`](setup.py)
+Note that the `k8scheck` package has entrypoint hooks defined in its [`setup.py`](setup.py)
 which allow it to be automatically made available to pytest. This means that it will run
-whenever pytest is run. Since `kubetest` expects a cluster to be set up and to be given
+whenever pytest is run. Since `k8scheck` expects a cluster to be set up and to be given
 configuration for that cluster, pytest will fail if those are not present. It is therefore
-recommended to only install `kubetest` in a virtual environment or other managed environment,
+recommended to only install `k8scheck` in a virtual environment or other managed environment,
 such as a CI pipeline, where you can assure that cluster access and configuration are
 available.
 
 ## Documentation
 
-See the [kubetest documentation page][kubetest-docs] for details on command line usage,
+See the [k8scheck documentation page][k8scheck-docs] for details on command line usage,
 available fixtures and markers, and general pytest integration.
 
 ## Feedback
 
-Feedback for kubetest is greatly appreciated! If you experience any issues, find the
+Feedback for k8scheck is greatly appreciated! If you experience any issues, find the
 documentation unclear, have feature requests, or just have questions about it, we'd
 love to know. Feel free to open an issue for any feedback you may have.
 
 ## License
 
-kubetest is released under the [GPL-3.0](LICENSE) license.
+k8scheck is released under the [GPL-3.0](LICENSE) license.
 
 
 
 [pytest]: https://docs.pytest.org/en/latest/
 [k8s-py]: https://github.com/kubernetes-client/python
-[kubetest-docs]: https://k8st3st.readthedocs.io/en/latest/
+[k8scheck-docs]: https://k8scheck.readthedocs.io/en/latest/

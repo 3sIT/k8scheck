@@ -1,17 +1,17 @@
 
-kubetest
+k8scheck
 ========
 
-``kubetest`` is a `pytest <https://docs.pytest.org/en/latest/>`_ plugin that
+``k8scheck`` is a `pytest <https://docs.pytest.org/en/latest/>`_ plugin that
 makes it easier to write integration tests on Kubernetes. This allows you to
 automate tests for your Kubernetes infrastructure, networking, and disaster recovery.
 
-kubetest was written out of a desire to test deployment behavior in a
+k8scheck was written out of a desire to test deployment behavior in a
 quasi-deterministic manner. Other solutions exist for on-cluster testing, such
 as `chaos testing <https://principlesofchaos.org/>`_, but often those solutions
 lack the ability to test the specific state of a small piece of the deployment.
 
-kubetest aims to make that easier, giving you control of your cluster from within
+k8scheck aims to make that easier, giving you control of your cluster from within
 your test cases, and providing a simple API for managing the cluster and the objects
 on it.
 
@@ -35,28 +35,28 @@ Features
 Installation
 ------------
 
-kubetest can be installed with ``pip``
+k8scheck can be installed with ``pip``
 
 .. code-block:: bash
 
-   $ pip install kubetest
+   $ pip install k8scheck
 
 
 .. note::
-   The kubetest package has entrypoint hooks defined in ``setup.py`` which allow it to be
+   The k8scheck package has entrypoint hooks defined in ``setup.py`` which allow it to be
    automatically made available to pytest. This means that it will run whenever pytest is run.
-   Since kubetest expects a cluster to be set up and to be given configuration for that
+   Since k8scheck expects a cluster to be set up and to be given configuration for that
    cluster, pytest will fail if those are not present. It is therefore recommended to only
-   install kubetest in a virtual environment or other managed environment, such as a CI
+   install k8scheck in a virtual environment or other managed environment, such as a CI
    pipeline, where you can assure that cluster access and configuration are available.
 
 
 Feedback
 --------
 
-Feedback for kubetest is greatly appreciated! If you experience any issues, find the
+Feedback for k8scheck is greatly appreciated! If you experience any issues, find the
 documentation unclear, have feature requests, or just have questions about it, we'd
-love to know. Feel free to open an issue on `GitHub <https://github.com/vapor-ware/kubetest/issues>`_
+love to know. Feel free to open an issue on `GitHub <https://github.com/vapor-ware/k8scheck/issues>`_
 for any feedback you may have. If you are reporting a bug, please provide as much
 context as you can.
 
@@ -64,7 +64,7 @@ context as you can.
 License
 -------
 
-kubetest is free and open source software distributed under the terms of
+k8scheck is free and open source software distributed under the terms of
 the `GPLv3`_ license.
 
 
@@ -80,4 +80,4 @@ the `GPLv3`_ license.
    module_ref
 
 
-.. _`GPLv3`: https://github.com/vapor-ware/kubetest/blob/master/LICENSE
+.. _`GPLv3`: https://github.com/vapor-ware/k8scheck/blob/master/LICENSE

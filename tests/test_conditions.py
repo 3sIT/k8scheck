@@ -1,8 +1,8 @@
-"""Unit tests for the kubetest.condition package."""
+"""Unit tests for the k8scheck.condition package."""
 
 import pytest
 
-from kubetest.condition import Condition, check_all, check_and_sort
+from k8scheck.condition import Condition, check_all, check_and_sort
 
 
 def test_condition_init_ok():

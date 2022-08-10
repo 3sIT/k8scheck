@@ -1,4 +1,4 @@
-"""An example of using kubetest to manage a service."""
+"""An example of using k8scheck to manage a service."""
 
 import ast
 import os

@@ -8,10 +8,10 @@ import pytest
     os.path.join(os.path.dirname(__file__), "manifests/deployment-redis.yaml")
 )
 def test_pods_from_deployment_loaded_from_marker(kube):
-    """Get the Pods for a Deployment which is loaded via the kubetest
+    """Get the Pods for a Deployment which is loaded via the k8scheck
     'applymanifest' marker.
 
-    When kubetest loads manifest files via markers, it does not pass
+    When k8scheck loads manifest files via markers, it does not pass
     a reference to those objects to the test case (as one would get
     if using a fixture). In order to get the pods for the deployment,
     you will need to get the deployment from the test namespace and

@@ -6,12 +6,12 @@ from typing import List
 
 from kubernetes import client
 
-from kubetest.utils import selector_string
+from k8scheck.utils import selector_string
 
 from .api_object import ApiObject
 from .pod import Pod
 
-log = logging.getLogger("kubetest")
+log = logging.getLogger("k8scheck")
 
 
 class Deployment(ApiObject):
@@ -36,18 +36,18 @@ class Deployment(ApiObject):
 
     def __init__(self, *args, **kwargs) -> None:
         super(Deployment, self).__init__(*args, **kwargs)
-        self._add_kubetest_labels()
+        self._add_k8scheck_labels()
 
-    def _add_kubetest_labels(self) -> None:
-        """Add a kubetest label to the Deployment object.
+    def _add_k8scheck_labels(self) -> None:
+        """Add a k8scheck label to the Deployment object.
 
-        This allows kubetest to more easily and reliably search for and aggregate
+        This allows k8scheck to more easily and reliably search for and aggregate
         API objects, such as getting the Pods for a Deployment.
 
-        The kubetest label key is "kubetest/<obj kind>" where the obj kind is
+        The k8scheck label key is "k8scheck/<obj kind>" where the obj kind is
         the lower-cased kind of the obj.
         """
-        self.klabel_key = "kubetest/deployment"
+        self.klabel_key = "k8scheck/deployment"
         if self.obj.metadata.labels:
             self.klabel_uid = self.obj.metadata.labels.get(self.klabel_key, None)
         else:
@@ -71,7 +71,7 @@ class Deployment(ApiObject):
 
         # If no spec is set, there is nothing to set additional labels on
         if self.obj.spec is None:
-            log.warning("deployment spec not set - cannot set kubetest label")
+            log.warning("deployment spec not set - cannot set k8scheck label")
             return
 
         # Set the selector label
@@ -99,7 +99,7 @@ class Deployment(ApiObject):
 
         Args:
             namespace: The namespace to create the Deployment under.
-                If the Deployment was loaded via the kubetest client, the
+                If the Deployment was loaded via the k8scheck client, the
                 namespace will already be set, so it is not needed here.
                 Otherwise, the namespace will need to be provided.
         """

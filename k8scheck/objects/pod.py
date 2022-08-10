@@ -6,12 +6,12 @@ from typing import Dict, List, Union
 from kubernetes import client
 from kubernetes.client.rest import ApiException
 
-from kubetest import condition, response, utils
+from k8scheck import condition, response, utils
 
 from .api_object import ApiObject
 from .container import Container
 
-log = logging.getLogger("kubetest")
+log = logging.getLogger("k8scheck")
 
 
 class Pod(ApiObject):
@@ -39,7 +39,7 @@ class Pod(ApiObject):
 
         Args:
             namespace: The namespace to create the Pod under.
-                If the Pod was loaded via the kubetest client, the
+                If the Pod was loaded via the k8scheck client, the
                 namespace will already be set, so it is not needed
                 here. Otherwise, the namespace will need to be provided.
         """

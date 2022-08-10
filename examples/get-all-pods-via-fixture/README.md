@@ -1,6 +1,6 @@
-# Use Case: Getting all pods in the test namespace using the kubetest fixture
+# Use Case: Getting all pods in the test namespace using the k8scheck fixture
 
-> Ref: https://github.com/vapor-ware/kubetest/issues/104
+> Ref: https://github.com/vapor-ware/k8scheck/issues/104
 
 This directory contains examples for getting pods for test cases. There are a number
 of ways to do this, depending on the end goal. Each test case's docstring provides
@@ -16,17 +16,17 @@ more detail on the method for getting pods.
 * `conftest.py`: Custom fixture definitions for [pytest](https://docs.pytest.org/en/latest/writing_plugins.html#conftest-py-plugins).
 
 ### Running
-With `pytest` and `kubetest` installed, and a kubeconfig file (`config` -- you will need
+With `pytest` and `k8scheck` installed, and a kubeconfig file (`config` -- you will need
 to supply the path to your own kubeconfig file) for the test cluster:
 
 ```console
 pytest --kube-config=./config --suppress-insecure-request .
 ================================================== test session starts ===================================================
 platform darwin -- Python 3.6.7, pytest-4.4.0, py-1.8.0, pluggy-0.9.0
-kubetest config file: ./config
-kubetest context: current context
-rootdir: /Users/edaniszewski/dev/vaporio/kubetest
-plugins: asyncio-0.10.0, kubetest-0.1.0
+k8scheck config file: ./config
+k8scheck context: current context
+rootdir: /Users/edaniszewski/dev/vaporio/k8scheck
+plugins: asyncio-0.10.0, k8scheck-0.1.0
 collected 5 items
 
 test_examples.py .....                                                                                             [100%]

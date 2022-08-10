@@ -1,4 +1,4 @@
-"""Test fixtures for kubetest unit tests."""
+"""Test fixtures for k8scheck unit tests."""
 
 import os
 

@@ -3,7 +3,7 @@ Fixtures
 ========
 
 This section defines the `fixtures <https://docs.pytest.org/en/latest/fixture.html>`_
-that ``kubetest`` makes available when installed.
+that ``k8scheck`` makes available when installed.
 
 .. note::
 
@@ -16,23 +16,23 @@ that ``kubetest`` makes available when installed.
 kube
 ----
 
-.. autofunction:: kubetest.plugin.kube
+.. autofunction:: k8scheck.plugin.kube
    :noindex:
 
 Summary
 ~~~~~~~
 
-The ``kube`` fixture is the "entrypoint" for using kubetest. In addition to returning
+The ``kube`` fixture is the "entrypoint" for using k8scheck. In addition to returning
 a client that can be used to manage your cluster from within the test case, it also
 provides automatic management of the test case on the cluster.
 
 What this means is that it will create a Namespace specific to that test case (prefixed
-with ``kubetest-``) and will create any resources specified by the kubetest :ref:`kube_markers`.
+with ``k8scheck-``) and will create any resources specified by the k8scheck :ref:`kube_markers`.
 Once the test has completed, the test client and all test-associated resources set up
 by this fixture are cleaned up.
 
 For the full API for the test client provided by the ``kube`` fixture, see the
-:ref:`kubetest_client` documentation.
+:ref:`k8scheck_client` documentation.
 
 Example Usage
 ~~~~~~~~~~~~~
@@ -73,7 +73,7 @@ See the :ref:`examples` page for more.
 kubeconfig
 ----------
 
-.. autofunction:: kubetest.plugin.kubeconfig
+.. autofunction:: k8scheck.plugin.kubeconfig
    :noindex:
 
 Summary
@@ -101,7 +101,7 @@ Below is a simple trivial example of how the ``kubeconfig`` fixture may be used.
 clusterinfo
 -----------
 
-.. autofunction:: kubetest.plugin.clusterinfo
+.. autofunction:: k8scheck.plugin.clusterinfo
    :noindex:
 
 Summary
@@ -135,7 +135,7 @@ so it should match the corresponding entries in the kube config file.
 
 The ``clusterinfo`` fixture returns an instance of ``ClusterInfo``:
 
-.. autoclass:: kubetest.plugin.ClusterInfo
+.. autoclass:: k8scheck.plugin.ClusterInfo
    :noindex:
 
 Example Usage

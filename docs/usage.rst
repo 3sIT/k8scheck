@@ -20,7 +20,7 @@ Once installed (see :ref:`installation`), the following pytest command-line opti
 
 
 kubernetes integration test support:
-  --kube-config=path    the kubernetes config for kubetest; this is required
+  --kube-config=path    the kubernetes config for k8scheck; this is required
                         for resources to be installed on the cluster
   --kube-context=context
                         the name of the kubernetes config context to use
@@ -28,7 +28,7 @@ kubernetes integration test support:
                         kubeconfig file
   --in-cluster          use the kubernetes in-cluster config
   --kube-log-level=KUBE_LOG_LEVEL
-                        log level for the kubetest logger
+                        log level for the k8scheck logger
   --kube-error-log-lines=KUBE_ERROR_LOG_LINES
                         set the number of lines to tail from container logs on
                         error. to show all lines, set this to -1.
@@ -42,7 +42,7 @@ kubernetes integration test support:
 
     Specifies the path to the config file to use for connecting to your cluster.
     Alternatively, you can set the KUBECONFIG env var, and then you will not need to specify.
-    If this option is not specified, ``kubetest`` will not install resources onto
+    If this option is not specified, ``k8scheck`` will not install resources onto
     the cluster, which may cause test failure.
 
 - ``--kube-context <CONTEXT>``
@@ -56,7 +56,7 @@ kubernetes integration test support:
        *v0.2.0*: This flag no longer does anything. It will be removed in the next
        major release.
 
-    Disable kubetest from running. This can be useful when running pytest when no
+    Disable k8scheck from running. This can be useful when running pytest when no
     backing cluster is needed (e.g. to view the registered markers via ``pytest --markers``).
 
 - ``--kube-error-log-lines <COUNT>``
@@ -68,8 +68,8 @@ kubernetes integration test support:
 
 - ``--kube-log-level <LEVEL>``
 
-    Sets the logging level for kubetest. The default log level is *warining*. Setting
-    the log level to *info* will provide logging for kubetest actions. Setting the log
+    Sets the logging level for k8scheck. The default log level is *warining*. Setting
+    the log level to *info* will provide logging for k8scheck actions. Setting the log
     level to *debug* will log out the Kubernetes object state for various actions as well.
 
 - ``--in-cluster``

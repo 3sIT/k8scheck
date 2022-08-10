@@ -1,4 +1,4 @@
-"""Custom pytest markers for kubetest."""
+"""Custom pytest markers for k8scheck."""
 
 import os
 from typing import List
@@ -6,9 +6,9 @@ from typing import List
 import pytest
 from kubernetes import client
 
-from kubetest import manager
-from kubetest.manifest import ContextRenderer, Renderer, load_file, load_path, render
-from kubetest.objects import ApiObject, ClusterRoleBinding, RoleBinding
+from k8scheck import manager
+from k8scheck.manifest import ContextRenderer, Renderer, load_file, load_path, render
+from k8scheck.objects import ApiObject, ClusterRoleBinding, RoleBinding
 
 APPLYMANIFEST_INI = (
     "applymanifest(path, render=None): "
@@ -85,7 +85,7 @@ NAMESPACE_INI = (
 
 
 def register(config) -> None:
-    """Register kubetest markers with pytest.
+    """Register k8scheck markers with pytest.
 
     Args:
         config: The pytest config that markers will be registered to.
@@ -102,7 +102,7 @@ def get_manifest_renderer_for_item(item: pytest.Item) -> Renderer:
     """Return the callable for rendering a manifest template.
 
     Returns the renderer set via the closest
-    `pytest.mark.render_manifests` marker or `kubetest.manifest.render`
+    `pytest.mark.render_manifests` marker or `k8scheck.manifest.render`
     if no marker is found.
 
     Args:
@@ -148,7 +148,7 @@ def apply_manifest_from_marker(item: pytest.Item, meta: manager.TestMeta) -> Non
         objs = load_file(path, renderer=context_renderer)
 
         # For each of the loaded Kubernetes resources, wrap it in the
-        # equivalent kubetest wrapper. If the object does not yet have a
+        # equivalent k8scheck wrapper. If the object does not yet have a
         # wrapper, error out. We cannot reliably create the resource
         # without our ApiObject wrapper semantics.
         wrapped = []
@@ -219,8 +219,8 @@ def apply_manifests_from_marker(item: pytest.Item, meta: manager.TestMeta) -> No
                 )
 
         # For each of the loaded Kubernetes resources, we'll want to wrap it
-        # in the equivalent kubetest wrapper. If the resource does not have
-        # an equivalent kubetest wrapper, error out. We cannot reliably create
+        # in the equivalent k8scheck wrapper. If the resource does not have
+        # an equivalent k8scheck wrapper, error out. We cannot reliably create
         # the resource without our ApiObject wrapper semantics.
         wrapped = []
         for obj in objs:
@@ -264,7 +264,7 @@ def rolebindings_from_marker(item: pytest.Item, namespace: str) -> List[RoleBind
             RoleBinding(
                 client.V1RoleBinding(
                     metadata=client.V1ObjectMeta(
-                        name=f"kubetest:{item.name}",
+                        name=f"k8scheck:{item.name}",
                         namespace=namespace,
                     ),
                     role_ref=client.V1RoleRef(
@@ -307,7 +307,7 @@ def clusterrolebindings_from_marker(
             ClusterRoleBinding(
                 client.V1ClusterRoleBinding(
                     metadata=client.V1ObjectMeta(
-                        name=f"kubetest:{item.name}",
+                        name=f"k8scheck:{item.name}",
                     ),
                     role_ref=client.V1RoleRef(
                         api_group="rbac.authorization.k8s.io",

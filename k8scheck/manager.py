@@ -5,9 +5,9 @@ from typing import Generator, List, Union
 
 import kubernetes
 
-from kubetest import client, objects, utils
+from k8scheck import client, objects, utils
 
-log = logging.getLogger("kubetest")
+log = logging.getLogger("k8scheck")
 
 
 class ObjectManager:
@@ -62,7 +62,7 @@ class ObjectManager:
         passed in, an error will be raised.
 
         Args:
-            args: Any subclass of the kubetest ApiObject wrapping a Kubernetes
+            args: Any subclass of the k8scheck ApiObject wrapping a Kubernetes
                 API object.
 
         Raises:
@@ -96,7 +96,7 @@ class ObjectManager:
         only yields the buckets in the correct order.
 
         Each of the buckets corresponds to an ApiObject wrapper that is supported
-        by kubetest. As more ApiObject wrappers are added, the buckets here
+        by k8scheck. As more ApiObject wrappers are added, the buckets here
         should be updated to reflect that.
 
         The bucket order in which objects are yielded are:
@@ -116,7 +116,7 @@ class ObjectManager:
           - Pod
 
         Yields:
-            The kubetest ApiObject wrapper to be created on the cluster.
+            The k8scheck ApiObject wrapper to be created on the cluster.
         """
         for bucket in self.ordered_buckets:
             for obj in self.__getattribute__(bucket):
@@ -319,7 +319,7 @@ class TestMeta:
 
 
 class KubetestManager:
-    """The manager for kubetest state.
+    """The manager for k8scheck state.
 
     The KubetestManager is in charge of providing test clients for the tests
     that request them and mediating the namespace management corresponding to

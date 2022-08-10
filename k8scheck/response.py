@@ -7,7 +7,7 @@ from typing import Any, Dict
 
 import urllib3
 
-log = logging.getLogger("kubetest")
+log = logging.getLogger("k8scheck")
 
 
 class Response:
@@ -45,7 +45,7 @@ class Response:
         # instances are the HTTP methods on Pods (e.g. http_proxy_get), where
         # `_preload_content=False`. Should that be set to True, it will not return
         # the HTTPResponse but will instead return the response data formatted as
-        # the type specified in the `response_type` param. By default, kubetest sets
+        # the type specified in the `response_type` param. By default, k8scheck sets
         # the _preload_content field to True, so this should generally not be hit.
         if isinstance(self.data, urllib3.HTTPResponse):
             return json.loads(self.data.data)
