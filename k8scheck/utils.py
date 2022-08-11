@@ -27,7 +27,7 @@ def new_namespace(test_name: str) -> str:
         The namespace name.
     """
     prefix = "k8scheck"
-    timestamp = str(int(time.time()))
+    timestamp = time.strftime('%Y%m%d%H%M%S')
     test_name = test_name.replace("_", "-").lower()
     test_name = test_name.replace("[", "-")
     test_name = test_name.replace("]", "-")
