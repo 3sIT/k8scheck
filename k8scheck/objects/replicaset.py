@@ -38,8 +38,6 @@ class ReplicaSet(ApiObject):
         super(ReplicaSet, self).__init__(*args, **kwargs)
         self._add_k8scheck_labels()
 
-        client.AppsV1Api.read_namespaced_replica_set()
-
     def _add_k8scheck_labels(self) -> None:
         """Add a k8scheck label to the ReplicaSet object.
 
