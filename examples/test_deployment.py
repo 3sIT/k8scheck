@@ -16,6 +16,8 @@ def test_deployment(kube):
     d.wait_until_ready(timeout=20)
     d.refresh()
 
+    assert 'test-deployment' in kube.get_deployments()
+
     pods = d.get_pods()
     assert len(pods) == 1
 
