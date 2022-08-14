@@ -20,7 +20,6 @@ if os.path.exists("README.md"):
 
 setup(
     name=pkg["__title__"],
-    version=pkg["__version__"],
     description=pkg["__description__"],
     long_description=readme,
     long_description_content_type="text/markdown",
@@ -37,6 +36,10 @@ setup(
         "kubernetes>=22.0.0, < 23.0.0",
         "pyyaml>=4.2b1",
         "pytest",
+    ],
+    use_scm_version=True,
+    setup_requires=[
+        "setuptools_scm"
     ],
     zip_safe=False,
     classifiers=[
