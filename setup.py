@@ -37,7 +37,9 @@ setup(
         "pyyaml>=4.2b1",
         "pytest",
     ],
-    use_scm_version=True,
+    use_scm_version={
+        "local_scheme": "no-local-version"
+    },
     setup_requires=[
         "setuptools_scm"
     ],
