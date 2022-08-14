@@ -131,6 +131,8 @@ def apply_manifest_from_marker(item: pytest.Item, meta: manager.TestMeta) -> Non
     """
     item_renderer = get_manifest_renderer_for_item(item)
     for mark in item.iter_markers(name="applymanifest"):
+        if len(mark.args) != 1:
+            raise TypeError("applymanifest expects one string argument")
         path = mark.args[0]
         renderer = mark.kwargs.get("renderer", item_renderer)
         if not callable(renderer):
@@ -182,6 +184,8 @@ def apply_manifests_from_marker(item: pytest.Item, meta: manager.TestMeta) -> No
     """
     item_renderer = get_manifest_renderer_for_item(item)
     for mark in item.iter_markers(name="applymanifests"):
+        if len(mark.args) != 1:
+            raise TypeError("applymanifests expects one string argument")
         dir_path = mark.args[0]
         files = mark.kwargs.get("files")
         renderer = mark.kwargs.get("renderer", item_renderer)
@@ -251,6 +255,8 @@ def rolebindings_from_marker(item: pytest.Item, namespace: str) -> List[RoleBind
     """
     rolebindings = []
     for mark in item.iter_markers(name="rolebinding"):
+        if len(mark.args) != 2:
+            raise TypeError("rolebinding expects two string arguments")
         kind = mark.args[0]
         name = mark.args[1]
         subj_kind = mark.kwargs.get("subject_kind")
@@ -295,6 +301,8 @@ def clusterrolebindings_from_marker(
     """
     clusterrolebindings = []
     for mark in item.iter_markers(name="clusterrolebinding"):
+        if len(mark.args) != 1:
+            raise TypeError("clusterrolebinding expects one string argument")
         name = mark.args[0]
         subj_kind = mark.kwargs.get("subject_kind")
         subj_name = mark.kwargs.get("subject_name")
