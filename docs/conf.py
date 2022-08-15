@@ -19,8 +19,7 @@ import sys
 sys.path.insert(0, os.path.abspath(".."))
 sys.path.insert(0, os.path.abspath("."))
 
-from k8scheck import __version__
-
+from pkg_resources import get_distribution
 
 
 # -- Project information -----------------------------------------------------
@@ -31,9 +30,9 @@ copyright = "2022, Terry Drisi"
 author = "Terry Drisi (originally Vapor IO)"
 
 # The short X.Y version
-version = __version__
+version = get_distribution(project).version
 # The full version, including alpha/beta/rc tags
-release = __version__
+release = version
 
 
 # -- General configuration ---------------------------------------------------
