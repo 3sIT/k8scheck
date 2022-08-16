@@ -1,5 +1,4 @@
 """k8scheck -- a Kubernetes integration test framework in Python."""
-from importlib_metadata import version
 __title__ = "k8scheck"
 __description__ = "A Kubernetes integration test framework in Python."
 __author__ = "Terry Drisi (originally Vapor IO)"
