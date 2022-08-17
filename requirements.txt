@@ -24,7 +24,7 @@ idna==3.3
     # via requests
 iniconfig==1.1.1
     # via pytest
-kubernetes >= 22.0.0, < 23.0.0
+kubernetes >= 18.0.0
     # via k8scheck (setup.py)
 oauthlib==3.2.0
     # via requests-oauthlib
