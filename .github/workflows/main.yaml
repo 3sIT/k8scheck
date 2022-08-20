@@ -6,6 +6,7 @@ on:
     branches:
       - main
       - release/*
+      - coverage_reporting
 
 concurrency:
   cancel-in-progress: true
@@ -13,7 +14,7 @@ concurrency:
 
 jobs:
   test:
-    name: Python ${{ matrix.py-version }} Test against k8s ${{ matrix.kubernetes }}
+    name: Python ${{ matrix.py-version }} Test against k8s v${{ matrix.kubernetes }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -38,8 +39,10 @@ jobs:
     - name: Run tests
       run: tox
     - name: Rename coverage report file
-      run: mv .coverage .coverage.${TOXENV}
-      shell: python
+      run: |
+        env
+        ls .coverage*
+        mv .coverage .coverage.k${{ matrix.kubernetes}}.py${{ matrix.py-version }}
     - name: Upload coverage data
       uses: actions/upload-artifact@v3
       with:
@@ -52,6 +55,8 @@ jobs:
     needs:
       - test
     steps:
+    - name: Checkout
+      uses: actions/checkout@v2
     - uses: actions/setup-python@v4
       with:
         python-version: "3.10"
@@ -64,7 +69,11 @@ jobs:
     - name: Combine coverage data
       run: |
         coverage combine
+        coverage xml
         coverage html -d ./htmlcov
+    - uses: codecov/codecov-action@v3
+      with:
+        fail_ci_if_error: true
     - name: Upload HTML report
       uses: actions/upload-artifact@v3
       with:
@@ -74,6 +83,7 @@ jobs:
 
 
   publish:
+    if: github.event_name == 'push' && ( startsWith(github.ref, 'refs/tags') || startsWith(github.ref, 'releases/') )
     runs-on: ubuntu-latest
     name: Build and Publish
     steps:
