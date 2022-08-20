@@ -1,6 +1,7 @@
 # k8scheck
 
 [![Build Status](https://github.com/3sIT/k8scheck/actions/workflows/test.yaml/badge.svg)](https://github.com/3sIT/k8scheck/actions/workflows/test.yaml)
+[![codecov](https://codecov.io/gh/3sIT/k8scheck/branch/main/graph/badge.svg?token=XPYVCIGQNZ)](https://codecov.io/gh/3sIT/k8scheck)
 [![PyPI](https://img.shields.io/pypi/v/k8scheck.svg)](https://pypi.org/project/k8scheck/)
 [![Documentation Status](https://readthedocs.org/projects/k8scheck/badge/?version=latest)](https://k8scheck.readthedocs.io/en/latest/?badge=latest)
 
