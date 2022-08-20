@@ -83,7 +83,7 @@ jobs:
 
 
   publish:
-    if: github.event_name == 'push' && ( startsWith(github.ref, 'refs/tags') || startsWith(github.ref, 'releases/') )
+    if: github.event_name == 'push' && ( startsWith(github.ref, 'refs/tags') || startsWith(github.ref, 'refs/heads/release/') )
     runs-on: ubuntu-latest
     name: Build and Publish
     steps:
