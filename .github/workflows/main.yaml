@@ -18,8 +18,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        py-version: ['3.7', '3.8', '3.9', '3.10']
-        kubernetes: ['18', '19', '20', '21', '22', '23', '24']
+        py-version: ['3.7', '3.8', '3.9', '3.10', '3.11']
+        kubernetes: ['18', '19', '20', '21', '22', '23', '24', '25']
 
     steps:
     - name: Checkout
